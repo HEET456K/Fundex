@@ -1,7 +1,7 @@
 'use client';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Image from 'next/image'; // Importing next/image component
+import Image from 'next/image';
 import {
     app,
     auth,
@@ -9,10 +9,8 @@ import {
     googleProvider,
 } from '@/firebaseService/firebase.config';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useState } from 'react';
 import Link from 'next/link';
-import { FaRegEye } from 'react-icons/fa';
-import { FaEyeSlash } from 'react-icons/fa';
+import { FaRegEye, FaEyeSlash } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { theme } from '@/theme';
@@ -25,7 +23,7 @@ import { getDocs, query, where } from 'firebase/firestore';
 import { setUser } from '@/redux/userReducer/userSlice.redux';
 
 const SignInPage = () => {
-    let auth = getAuth(app);
+    const auth = getAuth(app);
     const [formData, setFormData] = useState({
         email: '',
         password: '',
@@ -59,15 +57,20 @@ const SignInPage = () => {
         setIsSubmitting(true);
         try {
             const { email, password } = formData;
+            // Add your sign-in logic here, for example using signInWithEmailAndPassword
+            const userCredential = await auth.signInWithEmailAndPassword(email, password);
+            const user = userCredential.user;
+
+            // After successful sign-in, redirect the user to the "/stepform" page
+            router.push('/stepform');
         } catch (err) {
-            setError(error.message);
+            setError(err.message);
         } finally {
             setIsSubmitting(false);
         }
     };
 
     const signInWithGoogle = async () => {
-        console.log('click');
         try {
             const provider = new GoogleAuthProvider();
             const result = await signInWithPopup(auth, provider);
@@ -87,7 +90,9 @@ const SignInPage = () => {
                 router.push('/stepform');
             } else {
                 console.log('Old User');
-                router.push('/additionalinfo');
+                router.push('/stepform');
+                // router.push('/manage');
+
             }
             dispatch(setUser({ id: null, email: email }));
         } catch (error) {
@@ -100,7 +105,7 @@ const SignInPage = () => {
             style={{
                 backgroundColor: theme.loginPage.background,
             }}
-            className={`flex  justify-center h-full items-center  font-normal`}
+            className={`flex justify-center h-full items-center  font-normal `}
         >
             <div
                 style={{ backgroundColor: theme.loginPage.box }}
@@ -127,7 +132,7 @@ const SignInPage = () => {
                         className="border flex items-center justify-center gap-3 border-gray-400 h-[3rem] bg-[#494949] rounded-3xl w-full px-4 mb-6 mt-[10px]"
                     >
                         <FcGoogle className="text-2xl" />
-                        <p>Continue with google</p>
+                        <p>Continue with Google</p>
                     </button>
                 </div>
                 <div className="flex items-center">
@@ -179,12 +184,15 @@ const SignInPage = () => {
                             <input type="checkbox" name="" id="" />
                             <p>Remember me</p>
                         </div>
-                        <p>Forgot password ? </p>
+                        <p>Forgot password?</p>
                     </div>
-                    <button className="border border-gray-400 font-extrabold h-[3rem] bg-white text-black rounded-3xl w-full px-4">
+                    <button
+                        onClick={handleLoginBtn}
+                        className="border border-gray-400 font-extrabold h-[3rem] bg-white text-black rounded-3xl w-full px-4"
+                    >
                         Login
                     </button>
-                    <p>Not registered yet? Create an Account</p>
+                    <p>Not registered yet? <Link href="/signup">Create an Account</Link></p>
                 </div>
             </div>
             <div className="">
@@ -193,7 +201,7 @@ const SignInPage = () => {
                     width={550}
                     height={550}
                     alt="Sign in illustration"
-                    className="rounded-r-2xl  shadow-lg"
+                    className="rounded-r-2xl shadow-lg"
                 />
             </div>
         </div>

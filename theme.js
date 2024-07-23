@@ -4,7 +4,7 @@ export const theme = {
         secondary: '#494949',
     },
     loginPage: {
-        background: 'black',
+        background: '#171717',
         box: '#383838',
         btn: 'white',
     },

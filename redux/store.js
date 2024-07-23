@@ -1,9 +1,9 @@
-// redux/store.js
 'use client';
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import userSliceRedux from './userReducer/userSlice.redux';
+
 
 const rootReducer = combineReducers({
     user: userSliceRedux,

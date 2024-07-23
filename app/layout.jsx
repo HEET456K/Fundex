@@ -1,21 +1,22 @@
 'use client';
 import React from 'react';
 import Sidebar from '@/components/Sidebar';
-import { Provider, useSelector } from 'react-redux';
 import { store } from '../redux/store';
 import { Providers } from '@/redux/provider';
+import { usePathname } from 'next/navigation';
 import './globals.css';
 
 const RootLayout = ({ children }) => {
-    // const email = useSelector((state) => state.user);
-    // useEffect(() => {});
+    const pathname = usePathname();
+    const noSidebarRoutes = ['/sign-in', '/sign-up', '/stepform', '/allcampaigns', '/campaign'];
+    const shouldShowSidebar = !noSidebarRoutes.includes(pathname);
 
     return (
         <html lang="en">
             <head></head>
-            <body className="min-h-screen flex bg-[#32323e]">
+            <body className="min-h-screen flex bg-[#000000]">
                 <Providers store={store}>
-                    <Sidebar />
+                    {shouldShowSidebar && <Sidebar />}
                     <main className="flex-1">{children}</main>
                 </Providers>
             </body>
