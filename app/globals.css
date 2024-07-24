@@ -2,8 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');  
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -12,7 +11,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 body {
-    font-family: "Poppins", sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 600;
     font-style: normal;
 }
@@ -25,8 +24,8 @@ body {
 
 .flip-card {
     background-color: transparent;
-    width: 190px;
-    height: 254px;
+    width: 33%;
+    height: 400px;
     perspective: 1000px;
     font-family: sans-serif;
 }
@@ -67,14 +66,24 @@ body {
 }
 
 .flip-card-front {
-    background: linear-gradient(120deg, bisque 60%, rgb(255, 231, 222) 88%,
-            rgb(255, 211, 195) 40%, rgba(255, 127, 80, 0.603) 48%);
+    background: linear-gradient(
+        120deg,
+        bisque 60%,
+        rgb(255, 231, 222) 88%,
+        rgb(255, 211, 195) 40%,
+        rgba(255, 127, 80, 0.603) 48%
+    );
     color: coral;
 }
 
 .flip-card-back {
-    background: linear-gradient(120deg, rgb(255, 174, 145) 30%, coral 88%,
-            bisque 40%, rgb(255, 185, 160) 78%);
+    background: linear-gradient(
+        120deg,
+        rgb(255, 174, 145) 30%,
+        coral 88%,
+        bisque 40%,
+        rgb(255, 185, 160) 78%
+    );
     color: white;
     transform: rotateY(180deg);
 }
@@ -93,21 +102,21 @@ body {
         transform: rotate(0deg);
     }
 
-  100% {
-      transform: rotate(360deg);
-  }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 /* ui-button */
 .ui-btn {
     --btn-default-bg: rgb(41, 41, 41);
     --btn-hover-bg: rgb(51, 51, 51);
-    --btn-transition: .3s;
-    --btn-letter-spacing: .1rem;
+    --btn-transition: 0.3s;
+    --btn-letter-spacing: 0.1rem;
     --btn-animation-duration: 1.2s;
     --btn-shadow-color: rgba(0, 0, 0, 0.137);
     --btn-shadow: 0 2px 10px 0 var(--btn-shadow-color);
-    --hover-btn-color: #FAC921;
+    --hover-btn-color: #fac921;
     --default-btn-color: #fff;
     --font-size: 18px;
     /* 👆 this field should not be empty */
@@ -146,7 +155,7 @@ body {
 .ui-btn span::before {
     box-sizing: border-box;
     position: absolute;
-    content: "";
+    content: '';
     background: inherit;
 }
 
@@ -167,65 +176,61 @@ body {
 
 @keyframes chitchat {
     0% {
-        content: "#";
+        content: '#';
     }
 
     5% {
-        content: ".";
+        content: '.';
     }
 
     10% {
-        content: "^{";
+        content: '^{';
     }
 
     15% {
-        content: "-!";
+        content: '-!';
     }
 
     20% {
-        content: "#$_";
+        content: '#$_';
     }
 
     25% {
-        content: "№:0";
+        content: '№:0';
     }
 
     30% {
-        content: "#{+.";
-    }
-
-    35% {
-        content: "@}-?";
+        content: '#{+.';}35%{content: '@}-?';
     }
 
     40% {
-        content: "?{4@%";
+        content: '?{4@%';
     }
 
     45% {
-        content: "=.,^!";
+        content: '=.,^!';
     }
 
     50% {
-        content: "?2@%";
+        content: '?2@%';
     }
 
     55% {
-        content: "\;1}]";
+        content: '\;1}]';
     }
 
     60% {
-        content: "?{%:%";
+        content: '?{%:%';
         right: 0;
     }
 
     65% {
-        content: "|{f[4";
+        content: '|{f[4';
         right: 0;
     }
 
     70% {
-        content: "{4%0%";
+        content: '{4%0%';
         right: 0;
     }
 
@@ -235,7 +240,7 @@ body {
     }
 
     80% {
-        content: "{0%";
+        content: '{0%';
         right: 0;
     }
 
@@ -245,17 +250,17 @@ body {
     }
 
     90% {
-        content: "4";
+        content: '4';
         right: 0;
     }
 
     95% {
-        content: "2";
+        content: '2';
         right: 0;
     }
 
     100% {
-        content: "";
+        content: '';
         right: 0;
     }
 }

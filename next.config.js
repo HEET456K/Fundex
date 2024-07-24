@@ -5,6 +5,7 @@ const nextConfig = {
             's3-alpha-sig.figma.com',
             'google.com',
             'www.wallpaperflare.com',
+            '*',
         ],
     },
 };
